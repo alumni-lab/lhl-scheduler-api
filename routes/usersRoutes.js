@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-module.exports = usersRepository => {
+module.exports = (usersRepository) => {
   router.get("/", (req, res) => {
     usersRepository
-      .getAllUser()
+      .getAllUsers()
       .then(data => {
         const users = data.rows;
         res.json({ users });
@@ -13,6 +13,7 @@ module.exports = usersRepository => {
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
+    // usersRepository,getAllUsers
   });
 
   router.get(

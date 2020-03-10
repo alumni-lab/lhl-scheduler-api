@@ -18,7 +18,7 @@ const server = express();
 // ---- INITIALIZING THE DATABASE(POSTGRESQL) --- //
 // UNCOMMENT AFTER FILLING THE .env FILE WITH DATABASE CREDENTIALS
 
-/*
+
 const { Pool } = require('pg');
 const dbParams = require('./lib/db');
 const db = new Pool(dbParams);
@@ -32,8 +32,6 @@ db.connect();
 //     keys: ['xiutbgisergnpserigun']
 //   })
 // );
-
-*/
 
 server.use(cors());
 server.use(cookieParser());
@@ -54,19 +52,13 @@ server.set('view engine', 'ejs');
 const sampleRoutes = require('./routes/sampleRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 
-// ---- SETUP THE DIFFERENT PATHS IN THE SERVICE HERE ------- // <-- CONTAINS ALL OTHER COMPLEX BUSINESS LOGIC
-const usersServiceFactory = require('./service/usersServices');
-
 // ---- SETUP THE DIFFERENT PATHS IN THE REPOSITORY HERE ---- // <-- CONTAINS ALL THE DB LOGIC
 const sampleRepositoryFactory = require('./repository/sampleRepository');
 const usersRepositoryFactory = require('./repository/usersRepository');
 
 // ---- SETTING UP THE REPOSITORY AND SERVICE TO BE USED BY ROUTE -- // 
-// const sampleRepository = sampleRepositoryFactory(db); // <-- UNCOMMENT WHEN db section is UNCOMMENTED
-const sampleRepository = sampleRepositoryFactory();     //  <-- DELETE THIS LINE IF THE ABOVE LINE IS UNCOMMENTED
-
-// const usersRepository = usersRepositoryFactory(db); // <-- UNCOMMENT WHEN db section is UNCOMMENTED
-const usersRepository = usersRepositoryFactory();
+const sampleRepository = sampleRepositoryFactory(db);
+const usersRepository = usersRepositoryFactory(db);
 
 // ---- SERVER ROUTING -------------------------------------- // <-- Routes takes service as params which in turn takes repository as params
 server.use('/sample', sampleRoutes(sampleRepository));
