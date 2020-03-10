@@ -9,7 +9,7 @@
  const express = require('express');
  const router = express.Router();
 
- module.exports = (sampleService) => {
+ module.exports = (sampleRepository) => {
   
   router.get('/', (req, res) => {
     res.send('Welcome to sample route')
@@ -20,7 +20,7 @@
     // const input = req.body;
     const input = 'can be brought from url or the body if a form is submitted in front-end'
     try {
-      await sampleService.someFunc(input)
+      await sampleRepository.someFunc(input)
     // if setting cookie, uncomment the following code
     /*
     res.cookie('user', JSON.stringify({

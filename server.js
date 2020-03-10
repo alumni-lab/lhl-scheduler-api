@@ -65,15 +65,13 @@ const usersRepositoryFactory = require('./repository/usersRepository');
 // ---- SETTING UP THE REPOSITORY AND SERVICE TO BE USED BY ROUTE -- // 
 // const sampleRepository = sampleRepositoryFactory(db); // <-- UNCOMMENT WHEN db section is UNCOMMENTED
 const sampleRepository = sampleRepositoryFactory();     //  <-- DELETE THIS LINE IF THE ABOVE LINE IS UNCOMMENTED
-// const sampelService = sampleServiceFactory(sampleRepository);
 
 // const usersRepository = usersRepositoryFactory(db); // <-- UNCOMMENT WHEN db section is UNCOMMENTED
 const usersRepository = usersRepositoryFactory();
-const userService = usersServiceFactory(usersRepository);
 
 // ---- SERVER ROUTING -------------------------------------- // <-- Routes takes service as params which in turn takes repository as params
 server.use('/sample', sampleRoutes(sampleRepository));
-server.use('/users', usersRoutes(userService));
+server.use('/users', usersRoutes(usersRepository));
 
 // ---- HOME PAGE ------------------------------------------- //
 server.get('/', (req, res) => {
