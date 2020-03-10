@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-module.exports = userService => {
+module.exports = usersRepository => {
   router.get("/", (req, res) => {
-    userService
+    usersRepository
       .getAllUser()
       .then(data => {
         const users = data.rows;
