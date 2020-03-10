@@ -55,7 +55,6 @@ const sampleRoutes = require('./routes/sampleRoutes');
 const usersRoutes = require('./routes/usersRoutes');
 
 // ---- SETUP THE DIFFERENT PATHS IN THE SERVICE HERE ------- // <-- CONTAINS ALL OTHER COMPLEX BUSINESS LOGIC
-const sampleServiceFactory = require('./service/sampleServices');
 const usersServiceFactory = require('./service/usersServices');
 
 // ---- SETUP THE DIFFERENT PATHS IN THE REPOSITORY HERE ---- // <-- CONTAINS ALL THE DB LOGIC
