@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 const sass = require('node-sass-middleware');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
-const cors = require('cors')
+const cors = require('cors');
 
 // ---- INITIALIZING THE SERVER ----------------- //
 const server = express();
