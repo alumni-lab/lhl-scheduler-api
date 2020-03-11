@@ -1,2 +1,23 @@
-INSERT INTO users (first_name, last_name, is_full_time, able_to_lecture, wage, role, user_type, employee_id, account, password)
-VALUES ('Travis', 'Borsa', TRUE, TRUE, 3500, 'Instructor', 'employee', 101010, 'travis_lhl', '123' );
+INSERT INTO users(
+        first_name,
+        last_name,
+        employee_id,
+        account,
+        password,
+        role,
+        wage,
+        is_full_time,
+        able_to_lecture,
+        is_admin
+      ) VALUES (
+        'Glen',
+        'Chua',
+        'GC3333',
+        'admin',
+        123,
+        'staff',
+        1000000000,
+        true,
+        false,
+        true
+      )

@@ -9,16 +9,14 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   first_name VARCHAR(55) NOT NULL,
   last_name VARCHAR(55) NOT NULL,
+  employee_id VARCHAR(20) NOT NULL,
+  account VARCHAR(20) NOT NULL,
+  password VARCHAR(99) NOT NULL,
+  role VARCHAR(10) NOT NULL,
+  wage INTEGER NOT NULL,
   is_full_time BOOLEAN NOT NULL,
   able_to_lecture BOOLEAN NOT NULL,
-  wage INTEGER NOT NULL,
-  role VARCHAR(10) NOT NULL,
-  user_type VARCHAR(10) NOT NULL,
-
--- Auto Generated
-  employee_id INTEGER NOT NULL,
-  account VARCHAR(55) NOT NULL,
-  password VARCHAR(99) NOT NULL,
+  is_admin BOOLEAN NOT NULL,
 
 -- Mentor
   email VARCHAR(55),
@@ -61,3 +59,27 @@ CREATE TABLE budget (
   fri_day INTEGER NOT NULL,
   sat_day INTEGER NOT NULL
 );
+
+INSERT INTO users(
+        first_name,
+        last_name,
+        employee_id,
+        account,
+        password,
+        role,
+        wage,
+        is_full_time,
+        able_to_lecture,
+        is_admin
+      ) VALUES (
+        'Glen',
+        'Chua',
+        'GC3333',
+        'admin',
+        123,
+        'staff',
+        1000000000,
+        true,
+        false,
+        true
+      );
