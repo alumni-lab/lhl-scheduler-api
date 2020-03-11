@@ -13,8 +13,29 @@ module.exports = (usersRepository) => {
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
+    // usersRepository,getAllUsers
   });
 
+
+  router.post("/", async(req,res)=>{
+    console.log("user signup with: ", req.body)
+    const newUser = req.body;
+    try {
+      const result = await usersRepository.getUser(newUser);
+      console.log("result of checking: ", result.rows)
+      if (result.rows.length) {
+        throw "same employee id found!"
+      }
+      const result2 = await usersRepository.createUser(newUser)
+      console.log( "result from signing up: ",result2)
+      res.send('success')
+    } catch (err) {
+      console.error("err from signing up:", err);
+      res.status(400).send(err);
+    }
+  })
+
+  //google
   router.get(
     "/auth/google",
     passport.authenticate("google", {

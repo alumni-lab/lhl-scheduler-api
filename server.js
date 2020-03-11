@@ -60,7 +60,7 @@ const usersRepositoryFactory = require('./repository/usersRepository');
 const sampleRepository = sampleRepositoryFactory(db);
 const usersRepository = usersRepositoryFactory(db);
 
-// ---- SERVER ROUTING -------------------------------------- // 
+// ---- SERVER ROUTING -------------------------------------- // <-- Routes takes service as params which in turn takes repository as params
 server.use('/sample', sampleRoutes(sampleRepository));
 server.use('/users', usersRoutes(usersRepository));
 
