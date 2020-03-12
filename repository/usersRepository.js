@@ -5,14 +5,14 @@ module.exports = db => {
       const qs = `SELECT * FROM users;`;
       return db.query(qs);
     },
-    getUser: (newUser) => {
-      const qs = `SELECT * FROM users WHERE employee_id = '${newUser.employeeId}'`;
+    getUserByAccount: (accountId) => {
+      const qs = `SELECT * FROM users WHERE account = '${accountId}'`;
       return db.query(qs);
-    }
-    ,
+    },
     createUser: ({
       userFirstName,
       userLastName,
+      userEmail,
       employeeId,
       accountId,
       password,
@@ -26,6 +26,7 @@ module.exports = db => {
       qs = `INSERT INTO users(
         first_name,
         last_name,
+        email,
         employee_id,
         account,
         password,
@@ -35,11 +36,12 @@ module.exports = db => {
         able_to_lecture,
         is_admin
       ) VALUES (
-        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11
       )`
       return db.query(qs, [
         userFirstName,
         userLastName,
+        userEmail,
         employeeId,
         accountId,
         password,

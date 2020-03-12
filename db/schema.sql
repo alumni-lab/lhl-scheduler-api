@@ -17,14 +17,15 @@ CREATE TABLE users (
   is_full_time BOOLEAN NOT NULL,
   able_to_lecture BOOLEAN NOT NULL,
   is_admin BOOLEAN NOT NULL,
+  email VARCHAR(55),
 
 -- Mentor
-  email VARCHAR(55),
   phone VARCHAR(55),
   specialty VARCHAR(55),
   github TEXT,
   social_network TEXT,
-  website TEXT
+  website TEXT,
+  image_url TEXT
 );
 
 CREATE TABLE availabilities (
