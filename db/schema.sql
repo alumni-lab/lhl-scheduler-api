@@ -17,14 +17,15 @@ CREATE TABLE users (
   is_full_time BOOLEAN NOT NULL,
   able_to_lecture BOOLEAN NOT NULL,
   is_admin BOOLEAN NOT NULL,
+  email VARCHAR(55),
 
 -- Mentor
-  email VARCHAR(55),
   phone VARCHAR(55),
   specialty VARCHAR(55),
   github TEXT,
   social_network TEXT,
-  website TEXT
+  website TEXT,
+  image_url TEXT
 );
 
 CREATE TABLE availabilities (
@@ -70,7 +71,14 @@ INSERT INTO users(
         wage,
         is_full_time,
         able_to_lecture,
-        is_admin
+        is_admin,
+        email,
+        phone,
+        specialty,
+        github,
+        social_network,
+        website,
+        image_url
       ) VALUES (
         'Glen',
         'Chua',
@@ -81,5 +89,12 @@ INSERT INTO users(
         1000000000,
         true,
         false,
-        true
+        true,
+        'sjs5953@hotmail.com',
+        '778-680-9239',
+        'ReactJS',
+        'https://github.com/sjs5953',
+        'https://www.facebook.com/jay.j.seo',
+        'https://tripscheduler.netlify.com/',
+        'https://scontent.fyvr3-1.fna.fbcdn.net/v/t1.0-9/70916219_2665159533518691_6489255603511230464_o.jpg?_nc_cat=101&_nc_sid=85a577&_nc_ohc=PKEt56Cx8KcAX-Q5VD5&_nc_ht=scontent.fyvr3-1.fna&oh=54fe7e1f08a90484cff664b7ded24fdc&oe=5E8F7D96'
       );

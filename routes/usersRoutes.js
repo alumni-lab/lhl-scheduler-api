@@ -17,11 +17,11 @@ module.exports = (usersRepository) => {
   });
 
 
-  router.post("/", async(req,res)=>{
+  router.post("/signup", async(req,res)=>{
     console.log("user signup with: ", req.body)
     const newUser = req.body;
     try {
-      const result = await usersRepository.getUser(newUser);
+      const result = await usersRepository.getUserByAccount(newUser.accountId);
       console.log("result of checking: ", result.rows)
       if (result.rows.length) {
         throw "same employee id found!"
@@ -33,7 +33,44 @@ module.exports = (usersRepository) => {
       console.error("err from signing up:", err);
       res.status(400).send(err);
     }
-  })
+  });
+
+  router.post("/login", async (req, res) => {
+    const userInput=req.body;
+    const accountId = userInput.accountId;
+    const password = userInput.password;
+    try {
+      res.clearCookie()
+      const result = await usersRepository.getUserByAccount(accountId);
+
+      const user = result.rows[0];
+
+      console.log(accountId, password, user)
+      if (user) {
+        if (user.password === password) {
+          // res.cookie('name', `${user.first_name}`)
+          res.cookie('user', JSON.stringify({
+            name: user.first_name,
+            employee_id: user.employee_id,
+            is_admin: user.is_admin
+          }))
+          res.send({ user })
+        } else {
+          res.cookie(null)
+          res.end()
+        }
+      } else {
+        res.end()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  });
+
+  router.get("/logout", (req, res) => {
+    res.clearCookie('user')
+    res.end()
+  });
 
   //google
   router.get(
