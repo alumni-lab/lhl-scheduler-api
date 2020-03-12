@@ -74,5 +74,5 @@ server.get('/sample2', (req, res) => {
 
 // ---- START THE SERVER ------------------------------------ //
 server.listen(port, () => {
-  console.log(`The server is listening on port ${port}`)
+  console.log(`The server is listening on port ${port}`);
 });
