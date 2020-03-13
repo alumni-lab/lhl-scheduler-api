@@ -35,6 +35,34 @@ module.exports = (usersRepository) => {
     }
   });
 
+
+  router.post("/delete", async(req,res)=>{
+    const id = req.body.id
+    try{
+      const deleted = await usersRepository.deleteUser(id);
+      console.log(deleted.rows[0]);
+      if(!deleted.rows[0]) {
+        throw "User not found"
+      }
+      res.send(deleted.rows[0])
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  });
+
+  router.post("/edit", async(req,res)=>{
+    const user = req.body.user;
+    // console.log(user)
+    try{
+     await usersRepository.editUser(user);
+      res.send('Successfully Edited!')
+    } catch (err) {
+      console.log("here")
+      console.log(err)
+      res.status(400).send(err);
+    }
+  });
+
   router.post("/login", async (req, res) => {
     const userInput=req.body;
     const accountId = userInput.accountId;
