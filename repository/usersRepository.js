@@ -74,7 +74,6 @@ module.exports = db => {
     }) => {
       console.log('edituser called')
       const qs =`
-      Delete from users WHERE employee_id = '${employee_id}';
       INSERT INTO users(
         id,
         first_name,
@@ -95,26 +94,32 @@ module.exports = db => {
         website,
         image_url
       ) VALUES (
-        ${id},
-        '${first_name}',
-        '${last_name}',
-        '${employee_id}',
-        '${account}',
-        '${password}',
-        '${role}',
-        ${wage},
-        ${is_full_time},
-        ${able_to_lecture},
-        ${is_admin},
-        '${email}',
-        '${phone}',
-        '${specialty}',
-        '${github}',
-        '${social_network}',
-        '${website}',
-        '${image_url}'
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 ,$13, $14, $15, $16, $17, $18
       );`
-      return db.query(qs)
+
+      return db.query(`Delete from users WHERE employee_id = '${employee_id}'`)
+      .then(res => {
+        db.query(qs,[
+          id,
+          first_name,
+          last_name,
+          employee_id,
+          account,
+          password,
+          role,
+          wage,
+          is_full_time,
+          able_to_lecture,
+          is_admin,
+          email,
+          phone,
+          specialty,
+          github,
+          social_network,
+          website,
+          image_url
+        ])
+      })
     },
 
     deleteUser: (id) => {
@@ -126,4 +131,23 @@ module.exports = db => {
 };
 
 //security concern remains
-// $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 ,$13, $14, $15, $16, $17, $18
+//
+
+// ${id},
+// '${first_name}',
+// '${last_name}',
+// '${employee_id}',
+// '${account}',
+// '${password}',
+// '${role}',
+// ${wage},
+// ${is_full_time},
+// ${able_to_lecture},
+// ${is_admin},
+// '${email}',
+// '${phone}',
+// '${specialty}',
+// '${github}',
+// '${social_network}',
+// '${website}',
+// '${image_url}'
