@@ -18,7 +18,7 @@ module.exports = (usersRepository) => {
   });
 
 
-  router.post("/signup", async(req,res)=>{
+  router.post("/", async(req,res)=>{
     console.log("user signup with: ", req.body)
     const user = req.body;
     const password = bcrypt.hashSync(user.password, 10);
@@ -39,9 +39,8 @@ module.exports = (usersRepository) => {
     }
   });
 
-
-  router.post("/delete", async(req,res)=>{
-    const id = req.body.id
+  router.delete("/:userId", async(req,res)=>{
+    const id = req.params.userId;
     try{
       const deleted = await usersRepository.deleteUser(id);
       console.log(deleted.rows[0]);
@@ -54,15 +53,14 @@ module.exports = (usersRepository) => {
     }
   });
 
-  router.post("/edit/:type", async(req,res)=>{
-    const type = req.params.type;
-    console.log("type:",type)
+  router.put("/:userId", async(req,res)=>{
     let user = req.body.user;
-    if(type==='pw') {
+    let type = req.body.type;
+    console.log("type:",type)
+    if(type === 'password') {
       const password = bcrypt.hashSync(user.password, 10);
       user = {...user, password}
     }
-    // console.log(user)
     try{
      await usersRepository.editUser(user);
       res.send('Successfully Edited!')
