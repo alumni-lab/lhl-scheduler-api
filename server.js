@@ -56,7 +56,7 @@ const usersRoutes = require('./routes/usersRoutes');
 const sampleRepositoryFactory = require('./repository/sampleRepository');
 const usersRepositoryFactory = require('./repository/usersRepository');
 
-// ---- SETTING UP THE REPOSITORY AND SERVICE TO BE USED BY ROUTE -- // 
+// ---- SETTING UP THE REPOSITORY AND SERVICE TO BE USED BY ROUTE -- //
 const sampleRepository = sampleRepositoryFactory(db);
 const usersRepository = usersRepositoryFactory(db);
 
